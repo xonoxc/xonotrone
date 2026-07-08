@@ -17,13 +17,15 @@ class Tokenizer:
             self.vocab[token] = idx
             self.reverse_vocab[idx] = token
 
-    def tokenize(self, txt: str) -> list[str]:
-        return txt.split(" ")
+    def tokenize(self, text: str) -> list[str]:
+        return list(
+            text.replace(" ", ""),
+        )
 
     def get_vocab(self) -> Vocab:
         return self.vocab
 
-    def encode(self) -> list[int]:
+    def encode_vocab(self) -> list[int]:
         return [value for value in self.vocab.values()]
 
     def decode(self, token_ids: list[int]) -> str:
@@ -36,4 +38,4 @@ class Tokenizer:
                 self.reverse_vocab[token_id],
             )
 
-        return " ".join(tokens)
+        return "".join(tokens)
